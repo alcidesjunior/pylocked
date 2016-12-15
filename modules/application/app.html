@@ -41,33 +41,34 @@
         <h4>Novo cadastro</h4>
         <div class="row">
           <div class="col s12 input-field">
-            <input id="sistema" type="text" class="validate" >
+            <input id="sistema" type="text" ng-model="register.system_name" class="validate" >
             <label class="active" for="sistema">Sistema</label>
 
           </div>
         </div>
         <div class="row">
           <div class="col s12 input-field">
-            <input id="site" type="text" class="validate">
+            <input id="site" type="text" ng-model="register.url" class="validate">
             <label class="active" for="site">Site</label>
 
           </div>
         </div>
         <div class="row">
           <div class="col s12 input-field">
-            <input id="login" type="text" class="validate">
+            <input id="login" type="text" ng-model="register.login" class="validate">
             <label class="active" for="login">Login</label>
 
           </div>
         </div>
         <div class="row">
           <div class="col s12 input-field">
-            <input id="senha" type="password" class="validate">
+            <input id="senha" type="password" ng-model="register.password" class="validate">
             <label class="active" for="senha">Senha</label>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <a ng-click="close_modal_cadastro()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+        <!-- <a ng-click="close_modal_cadastro()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a> -->
+        <a class="btn btn-blue waves-effect" ng-click="add_register(register)">Salvar</a>
       </div>
     </div>

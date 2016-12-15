@@ -1,23 +1,13 @@
- app.controller('loginController',function($scope,$http){
-
+ app.controller('loginController',function($scope,$http,$location,$rootScope){
   $scope.do_login=function(login){
-    // $http({
-    //   url:"http://192.168.42.126:3000/login",
-    //   contentType:"application/json",
-    //   method:"POST",
-    //   data:  JSON.stringify(login) ,
-    //
-    // }).success(function(e){
-    //   console.log(e);
-    // });
-    $.ajax({
-      url:"http://localhost:3000/login",
-      type:"POST",
-      contentType:'application/json',
-      crossDomain:true,
-      data: login,
-      success:function(e){
-        console.log(e);
+    $http.post("http://127.0.0.1:8080/login",
+    JSON.stringify(login),
+    {headers:{'Content-Type':'application/json'}
+    }).success(function(e){
+      console.log(e);
+      if(typeof e.auth_token != "undefined" && e.auth_token.length>0){
+        $rootScope.token = e.auth_token;
+        $location.path('/app');
       }
     });
   }
