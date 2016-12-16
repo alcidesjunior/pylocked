@@ -15,7 +15,7 @@ app.controller("mainController",function($http,$scope,$rootScope){
     JSON.stringify(register),
     {headers:{'Content-Type':'application/json'}
     }).success(function(e){
-      console.log(e);
+      location.reload();
     });
   };
   $scope.list_registers=function(){
@@ -34,6 +34,31 @@ app.controller("mainController",function($http,$scope,$rootScope){
     JSON.stringify(register),
     {headers:{'Content-Type':'application/json'}
     }).success(function(e){
+      location.reload();
+    });
+  };
+  $scope.show_register=function(user_id,id){
+    register = {};
+    register.user_id = user_id;
+    register.id = id;
+    $http.post("http://127.0.0.1:8080/show_register",
+    JSON.stringify(register),
+    {headers:{'Content-Type':'application/json'}
+    }).success(function(e){
+      $scope.register_edit = {};
+      $scope.register_edit = e[0];
+      console.log(e);
+      $('#modalEditRegister').modal('open')
+    });
+
+  };
+  $scope.update_register=function(register){
+    $http.post("http://127.0.0.1:8080/update_register",
+    JSON.stringify(register),
+    {headers:{'Content-Type':'application/json'}
+    }).success(function(e){
+      console.log(e);
+      alert(e.message);
       location.reload();
     });
   };

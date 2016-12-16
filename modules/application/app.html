@@ -15,17 +15,42 @@
     <b>Carregando dados</b><br>
     <img src="assets/images/loader.gif" alt="" />
   </div>
-  <ul class="collection" ng-repeat="reg in registers">
+
+  <nav style="width: 400px !important;float:right">
+    <div class="nav-wrapper white">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" placeholder="Search" required ng-model="search_register">
+          <label for="search"><i class="material-icons black-text">search</i></label>
+        </div>
+      </form>
+    </div>
+  </nav><br><br><br>
+  <div class="row">
+    <div class="col s3">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>SISTEMA</b>
+    </div>
+    <div class="col s7">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>SITE</b>
+    </div>
+    <div class="col s1">
+      &nbsp;
+    </div>
+    <div class="col s1">
+      &nbsp;
+    </div>
+  </div>
+  <ul class="collection" ng-repeat="reg in registers | filter:search_register">
     <li class="collection-item">
       <div class="row">
         <div class="col s3">
           {{reg.system_name}}
         </div>
         <div class="col s7">
-          {{reg.url}}
+          <a href="{{reg.url}}" target="_blank">{{reg.url}}</a>
         </div>
         <div class="col s1">
-          <a class="btn waves-effect btn-floating">
+          <a class="btn waves-effect btn-floating" ng-click="show_register(reg.user_id,reg.id)">
             <i class="material-icons">create</i>
           </a>
         </div>
@@ -62,39 +87,78 @@
         <li><a class="subheader">Desenvolvido por</a></li>
         <li><a class="waves-effect" target="_blank" href="http://ajatdesenvolvimento.com.br">AJAT Desenvolvimento ®</a></li>
     </ul>
-    <div id="modal1" class="modal modal-fixed-footer ">
-      <div class="modal-content">
-        <h4>Novo cadastro</h4>
-        <div class="row">
-          <div class="col s12 input-field">
-            <input id="sistema" type="text" ng-model="register.system_name" class="validate" >
-            <label class="active" for="sistema">Sistema</label>
+  <div id="modal1" class="modal modal-fixed-footer ">
+    <div class="modal-content">
+      <h4>Novo cadastro</h4>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="sistema" type="text" ng-model="register.system_name" autofocus="" class="validate" >
+          <label class="active" for="sistema">Sistema</label>
 
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s12 input-field">
-            <input id="site" type="text" ng-model="register.url" class="validate">
-            <label class="active" for="site">Site</label>
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s12 input-field">
-            <input id="login" type="text" ng-model="register.login" class="validate">
-            <label class="active" for="login">Login</label>
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s12 input-field">
-            <input id="senha" type="password" ng-model="register.password" class="validate">
-            <label class="active" for="senha">Senha</label>
-          </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <!-- <a ng-click="close_modal_cadastro()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a> -->
-        <a class="btn btn-blue waves-effect" ng-click="add_register(register)">Salvar</a>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="site" type="text" ng-model="register.url" class="validate">
+          <label class="active" for="site">Site</label>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="login" type="text" ng-model="register.login" class="validate">
+          <label class="active" for="login">Login</label>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="senha" type="password" ng-model="register.password" class="validate">
+          <label class="active" for="senha">Senha</label>
+        </div>
       </div>
     </div>
+    <div class="modal-footer">
+      <!-- <a ng-click="close_modal_cadastro()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a> -->
+      <a class="btn btn-blue waves-effect" ng-click="add_register(register)">Salvar</a>
+    </div>
+  </div>
+  <div id="modalEditRegister" class="modal modal-fixed-footer ">
+    <div class="modal-content">
+      <h4>Editar cadastro</h4>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="sistema" type="text" ng-model="register_edit.system_name" autofocus="" class="validate" >
+          <label class="active" for="sistema">Sistema</label>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="site" type="text" ng-model="register_edit.url" autofocus="" class="validate">
+          <label class="active" for="site">Site</label>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="login" type="text" ng-model="register_edit.login" autofocus="" class="validate">
+          <label class="active" for="login">Login</label>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="senha" type="text" ng-model="register_edit.password" autofocus="" class="validate">
+          <label class="active" for="senha">Senha</label>
+          <input id="senha" type="hidden" ng-model="register_edit.user_id" autofocus="" class="validate">
+          <input id="senha" type="hidden" ng-model="register_edit.id" autofocus="" class="validate">
+
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <!-- <a ng-click="close_modal_cadastro()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a> -->
+      <a class="btn btn-blue waves-effect" ng-click="update_register(register_edit)">Atualizar</a>
+    </div>
+  </div>
