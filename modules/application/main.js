@@ -11,7 +11,6 @@ app.controller("mainController",function($http,$scope,$rootScope){
   };
   $scope.add_register=function(register){
     register.user_id = 2;
-    console.log(register);
     $http.post("http://127.0.0.1:8080/add_register",
     JSON.stringify(register),
     {headers:{'Content-Type':'application/json'}
@@ -20,9 +19,23 @@ app.controller("mainController",function($http,$scope,$rootScope){
     });
   };
   $scope.list_registers=function(){
-    $http.get('http://127.0.0.1:8080/list_registers/2').success(function(e){
-      console.log(e);
+    $('#loader').show();
+    $http.get('http://127.0.0.1:8080/list_registers/2').then(function(e){
+      $scope.registers = e.data;
+    }).finally(function(){
+      $('#loader').hide();
     });
   }
+  $scope.delete_password=function(id,user_id){
+    register = {};
+    register.id = id;
+    register.user_id = user_id;
+    $http.post("http://127.0.0.1:8080/delete_register",
+    JSON.stringify(register),
+    {headers:{'Content-Type':'application/json'}
+    }).success(function(e){
+      location.reload();
+    });
+  };
   $scope.list_registers();
 });

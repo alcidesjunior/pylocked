@@ -10,7 +10,33 @@
       </ul>
     </div>
   </nav>
-  {{teste}}
+  <div id="loader" align="center" style="display:none">
+    <br><br><br><br>
+    <b>Carregando dados</b><br>
+    <img src="assets/images/loader.gif" alt="" />
+  </div>
+  <ul class="collection" ng-repeat="reg in registers">
+    <li class="collection-item">
+      <div class="row">
+        <div class="col s3">
+          {{reg.system_name}}
+        </div>
+        <div class="col s7">
+          {{reg.url}}
+        </div>
+        <div class="col s1">
+          <a class="btn waves-effect btn-floating">
+            <i class="material-icons">create</i>
+          </a>
+        </div>
+        <div class="col s1">
+          <a class="btn waves-effect btn-floating red" ng-click="delete_password(reg.id,reg.user_id)">
+            <i class="material-icons">delete</i>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
   <div class="fixed-action-btn vertical click-to-toggle">
     <a class="btn-floating btn-large green">
       <i class="material-icons">apps</i>
@@ -36,7 +62,7 @@
         <li><a class="subheader">Desenvolvido por</a></li>
         <li><a class="waves-effect" target="_blank" href="http://ajatdesenvolvimento.com.br">AJAT Desenvolvimento ®</a></li>
     </ul>
-    <div id="modal1" class="modal">
+    <div id="modal1" class="modal modal-fixed-footer ">
       <div class="modal-content">
         <h4>Novo cadastro</h4>
         <div class="row">
