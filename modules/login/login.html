@@ -1,5 +1,5 @@
 <div class="row " style="margin-top:2%">
-<form class="col s12">
+<form class="col s12" name="formlogin">
   <div class="row">
     <div class="col s4 push-s5" style="margin-left:20px !important">
       <img src="assets/images/logo.jpg" width="110" class="animated wobble" /><br>
@@ -12,17 +12,20 @@
   </div>
   <div class="row">
     <div class="input-field col s4 push-s4">
-      <input id="user" placeholder="E-mail" type="text" class="validate" ng-model="login.email">
+      <input id="user" placeholder="E-mail" type="text" class="validate" ng-model="login.email" required>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s4 push-s4">
-      <input id="pwd" placeholder="Password" type="password" class="validate" ng-model="login.password">
+      <input id="pwd" placeholder="Password" type="password" class="validate" ng-model="login.password" required>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s4 push-s4">
-      <a class="waves-effect waves-light btn green " ng-click="do_login(login)">Login</a>
+      <a class="waves-effect waves-light btn green " ng-disabled="formlogin.$invalid" ng-click="do_login(login)">Log in</a>
+    </div>
+    <div class="input-field col s4 push-s2">
+      <a class="waves-effect waves-light  white blue-text " ng-click="new_user()">I want sign up!</a>
     </div>
   </div>
 </form>
@@ -47,3 +50,24 @@
   </div>
 </div>
 </footer>
+<div id="modalNewUser" class="modal modal-fixed-footer ">
+  <div class="modal-content">
+    <h4>New user</h4>
+    <div class="row">
+      <div class="col s12 input-field">
+        <input id="login" type="text" ng-model="register_edit.login" autofocus="" class="validate">
+        <label class="active" for="login">Login</label>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 input-field">
+        <input id="senha" type="text" ng-model="register_edit.password" autofocus="" class="validate">
+        <label class="active" for="senha">Senha</label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-blue waves-effect" ng-click="update_register(register_edit)">Save</a>
+  </div>
+</div>
