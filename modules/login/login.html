@@ -51,23 +51,47 @@
 </div>
 </footer>
 <div id="modalNewUser" class="modal modal-fixed-footer ">
-  <div class="modal-content">
-    <h4>New user</h4>
-    <div class="row">
-      <div class="col s12 input-field">
-        <input id="login" type="text" ng-model="register_edit.login" autofocus="" class="validate">
-        <label class="active" for="login">Login</label>
+  <form name="formuser" id="formuser">
+    <div class="modal-content">
+      <h4>New user</h4>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="first_name" type="text" ng-model="user.name" autofocus="" required class="validate">
+          <label class="active" for="first_name">First name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="lastname" type="text" ng-model="user.lastname" autofocus="" required class="validate">
+          <label class="active" for="lastname">Last name</label>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col s12 input-field">
+          <select id="gender">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+          </select>
+          <label>Gender</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="email" type="text" ng-model="user.email" autofocus="" required class="validate">
+          <label class="active" for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input id="senha" type="text" ng-model="user.password" autofocus="" required class="validate">
+          <label class="active" for="senha">Senha</label>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col s12 input-field">
-        <input id="senha" type="text" ng-model="register_edit.password" autofocus="" class="validate">
-        <label class="active" for="senha">Senha</label>
-      </div>
+    <div class="modal-footer">
+      <a class="btn btn-blue waves-effect" ng-click="add_user(user)" ng-disabled="formuser.$invalid">Register</a>
     </div>
-  </div>
-  <div class="modal-footer">
-    <a class="btn btn-blue waves-effect" ng-click="update_register(register_edit)">Save</a>
-  </div>
+  </form>
 </div>

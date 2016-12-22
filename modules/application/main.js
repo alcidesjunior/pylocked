@@ -1,16 +1,25 @@
 app.controller("mainController",function($http,$scope,$rootScope){
   $scope.teste = "meu teste";
+  $scope.fullname = localStorage.name+" "+localStorage.lastname;
+  $scope.usermail = localStorage.email;
+  $scope.gender = localStorage.gender;
   $('.modal').modal();
   $('.tooltipped').tooltip({delay: 10});
   $(".menu-open").sideNav('');
   $scope.open_modal_cadastro=function(){
     $('#modal1').modal('open');
   };
+
+  $scope.logout=function(){
+    localStorage.clear();
+    location.href="#/";
+  };
+
   $scope.close_modal_cadastro=function(){
     $('#modal1').modal('close');
   };
   $scope.add_register=function(register){
-    register.user_id = 2;
+    register.user_id = localStorage.user_id;
     $http.post("http://127.0.0.1:8080/add_register",
     JSON.stringify(register),
     {headers:{'Content-Type':'application/json'}
@@ -20,11 +29,16 @@ app.controller("mainController",function($http,$scope,$rootScope){
   };
   $scope.list_registers=function(){
     $('#loader').show();
-    $http.get('http://127.0.0.1:8080/list_registers/2').then(function(e){
-      $scope.registers = e.data;
-    }).finally(function(){
-      $('#loader').hide();
-    });
+    if(localStorage.user_id){
+      var user_id = localStorage.user_id;
+      $http.get('http://127.0.0.1:8080/list_registers/'+user_id).then(function(e){
+        $scope.registers = e.data;
+      }).finally(function(){
+        $('#loader').hide();
+      });
+    }else {
+      location.href="#/";
+    }
   }
   $scope.delete_password=function(id,user_id){
     register = {};

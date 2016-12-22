@@ -6,7 +6,7 @@
         Pylocked
       </a>
       <ul id="nav-mobiles" class="right hide-on-med-and-down">
-        <li ><a href="#/">Sair</a></li>
+        <li ><a href="#/" ng-click='logout()'>Sair</a></li>
       </ul>
     </div>
   </nav>
@@ -70,14 +70,14 @@
   <ul id="slide-out" class="side-nav">
         <li>
           <div class="userView">
-            <img class="background" src="assets/images/manha.gif">
-            <a href=""><img class="circle" src="assets/images/logo.jpg"></a>
-            <a href=""><span class="blue-text name">Alcides Junior</span></a>
-            <a href=""><span class="blue-text email">ajatdesenvolvimento@gmail.com</span></a>
+            <!-- <img class="background" src="assets/images/manha.gif"> -->
+            <a href=""><img class="circle" src="assets/images/{{(gender==1) ? '1.jpg' : '0.png' }}"></a>
+            <a href=""><span class="blue-text name">{{fullname}}</span></a>
+            <a href=""><span class="blue-text email">{{usermail}}</span></a>
           </div>
         </li>
         <li ><a href="" ng-click="open_modal_cadastro()"><i class="material-icons">add</i>Novo cadastro</a></li>
-        <li ><a href=""><i class="material-icons">settings</i>Configurações</a></li>
+        <!-- <li ><a href=""><i class="material-icons">settings</i>Configurações</a></li> -->
         <li><div class="divider"></div></li>
         <li><a class="subheader">Desenvolvido por</a></li>
         <li><a class="waves-effect" target="_blank" href="http://ajatdesenvolvimento.com.br">AJAT Desenvolvimento ®</a></li>
