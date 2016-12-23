@@ -7,22 +7,24 @@
      }
    });
   $scope.do_login=function(login){
-    $http.post("http://127.0.0.1:8080/login",
-    JSON.stringify(login),
-    {headers:{'Content-Type':'application/json'}
-    }).success(function(e){
-      if(typeof e.auth_token != "undefined" && e.auth_token.length>0){
-        localStorage.setItem("user_id",e.user_id);
-        localStorage.setItem('name',e.name);
-        localStorage.setItem('lastname',e.lastname);
-        localStorage.setItem('email',e.email);
-        localStorage.setItem('gender',e.gender);
-        $rootScope.token = e.auth_token;
-        $location.path('/app');
-      }else{
-        Materialize.toast('Authentication failed!', 3000,'rounded')
-      }
-    });
+    // $http.post("http://127.0.0.1:8080/login",
+    // JSON.stringify(login),
+    // {headers:{'Content-Type':'application/json'}
+    // }).success(function(e){
+    //   if(typeof e.auth_token != "undefined" && e.auth_token.length>0){
+    //     localStorage.setItem("user_id",e.user_id);
+    //     localStorage.setItem('name',e.name);
+    //     localStorage.setItem('lastname',e.lastname);
+    //     localStorage.setItem('email',e.email);
+    //     localStorage.setItem('gender',e.gender);
+    //     $rootScope.token = e.auth_token;
+    //     $location.path('/app');
+    //   }else{
+    //     Materialize.toast('Authentication failed!', 3000,'rounded')
+    //   }
+    // });
+      $location.path('/app');
+
   }
   $scope.new_user=function(){
     $('#modalNewUser').modal('open');

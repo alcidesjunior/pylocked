@@ -28,17 +28,24 @@ app.controller("mainController",function($http,$scope,$rootScope){
     });
   };
   $scope.list_registers=function(){
-    $('#loader').show();
-    if(localStorage.user_id){
-      var user_id = localStorage.user_id;
-      $http.get('http://127.0.0.1:8080/list_registers/'+user_id).then(function(e){
-        $scope.registers = e.data;
-      }).finally(function(){
-        $('#loader').hide();
-      });
-    }else {
-      location.href="#/";
-    }
+    $scope.registers = [
+      {"system_name":"Facebook","url":"https://facebook.com"},
+      {"system_name":"Gmail","url":"https://gmail.com"},
+      {"system_name":"Twitter","url":"https://twitter.com"},
+      {"system_name":"QAcadêmico","url":"http://qacademico.ifce.edu.com"},
+      {"system_name":"Hotmail","url":"https://hotmail.com"}
+    ];
+    // $('#loader').show();
+    // if(localStorage.user_id){
+    //   var user_id = localStorage.user_id;
+    //   $http.get('http://127.0.0.1:8080/list_registers/'+user_id).then(function(e){
+    //     $scope.registers = e.data;
+    //   }).finally(function(){
+    //     $('#loader').hide();
+    //   });
+    // }else {
+    //   location.href="#/";
+    // }
   }
   $scope.delete_password=function(id,user_id){
     register = {};
